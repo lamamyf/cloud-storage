@@ -1,15 +1,40 @@
 package com.udacity.jwdnd.course1.cloudstorage.controller;
 
+import com.udacity.jwdnd.course1.cloudstorage.entity.File;
+import com.udacity.jwdnd.course1.cloudstorage.service.FileService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Controller
-@RequestMapping("/home")
+@RequiredArgsConstructor
 public class HomeController {
 
-    @GetMapping
-    public String getHomePage(){
+    private final FileService fileService;
+
+    @PostMapping("/file/upload")
+    public String uploadFile(@RequestParam("file") MultipartFile file, Model model){
+        fileService.uploadFile(file);
+        model.addAttribute("files", fileService.getFilesByUserId(1));
+        return "home";
+    }
+
+    @GetMapping("/file/{name}")
+    public void getFile(@PathVariable String name, HttpServletResponse response) throws IOException {
+        File file = fileService.getFileByNameAndUserId(name, 1);
+        response.setContentType(file.getContentType());
+        response.getOutputStream().write(file.getData());
+        response.getOutputStream().close();
+    }
+
+    @GetMapping("/home")
+    public String getHomePage(Model model){
+        model.addAttribute("files", fileService.getFilesByUserId(1));
         return "home";
     }
 }

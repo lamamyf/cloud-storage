@@ -10,4 +10,12 @@ public class File {
     private String size;
     private int userId;
     private byte[] data;
+
+    public File(String name, String contentType, String size, int userId, byte[] data){
+        this.name = name;
+        this.contentType = contentType;
+        this.size = size;
+        this.userId = userId;
+        this.data = data;
+    }
 }

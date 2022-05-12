@@ -17,6 +17,9 @@
                 </form>
             </div>
 
+            <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
+            <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
+
             <div id="contentDiv" style="clear: right;">
                 <nav style="clear: right;">
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -35,7 +38,7 @@
                                         <label for="fileUpload">Upload a New File:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="file" class="form-control-file" id="fileUpload" name="file">
+                                        <input type="file" class="form-control-file" id="fileUpload" name="file" required>
                                     </div>
                                     <div class="col-sm-4">
                                         <button type="submit" class="btn btn-dark" id="uploadButton">Upload</button>
@@ -53,10 +56,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="fileName : ${files}">
+                                <tr th:each="fileName: ${files}">
                                     <td>
                                         <a target="_blank" class="btn btn-success" th:href="@{'/file/' + ${fileName}}">View</a>
-                                        <a  class="btn btn-danger">Delete</a>
+                                        <form class="btn btn-danger" th:action="@{'/file/' + ${fileName}}" th:method="delete">
+                                            <button style="background-color: transparent; border-color: transparent; box-shadow: none;">Delete</button>
+                                        </form>
                                     </td>
                                     <th scope="row" th:text="${fileName}"></th>
                                 </tr>

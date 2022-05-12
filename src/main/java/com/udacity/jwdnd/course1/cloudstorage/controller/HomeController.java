@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -18,10 +19,17 @@ public class HomeController {
     private final FileService fileService;
 
     @PostMapping("/file/upload")
-    public String uploadFile(@RequestParam("file") MultipartFile file, Model model){
+    public String uploadFile(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes){
         fileService.uploadFile(file);
-        model.addAttribute("files", fileService.getFilesByUserId(1));
-        return "home";
+        redirectAttributes.addFlashAttribute("success", "File uploaded successfully.");
+        return "redirect:/result";
+    }
+
+    @DeleteMapping("/file/{name}")
+    public String deleteFile(@PathVariable String name, RedirectAttributes redirectAttributes){
+        fileService.deleteFileByNameAndUserId(name, 1);
+        redirectAttributes.addFlashAttribute("success", "File deleted successfully.");
+        return "redirect:/result";
     }
 
     @GetMapping("/file/{name}")

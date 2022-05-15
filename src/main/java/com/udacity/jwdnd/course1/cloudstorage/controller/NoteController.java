@@ -1,6 +1,5 @@
 package com.udacity.jwdnd.course1.cloudstorage.controller;
 
-import com.udacity.jwdnd.course1.cloudstorage.entity.Note;
 import com.udacity.jwdnd.course1.cloudstorage.entity.dto.NoteForm;
 import com.udacity.jwdnd.course1.cloudstorage.service.NoteService;
 import lombok.RequiredArgsConstructor;

@@ -35,4 +35,5 @@ CREATE TABLE IF NOT EXISTS CREDENTIALS (
     foreign key (user_id) references USERS(id)
 );
 
-INSERT INTO USERS (id, username, salt, password, first_name, last_name) VALUES (1, 'lama', 'm', 'q', 'e', 'd')
+INSERT INTO USERS (id, username, salt, password, first_name, last_name) VALUES (1, 'lama', 'm', 'q', 'e', 'd');
+INSERT INTO NOTES (id, title, description, user_id) VALUES (1, 'lama', 'm', 1);

@@ -1,7 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage.entity.mapper;
 
 import com.udacity.jwdnd.course1.cloudstorage.entity.Credential;
-import com.udacity.jwdnd.course1.cloudstorage.entity.Note;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -21,5 +20,5 @@ public interface CredentialMapper {
     void deleteCredentialById(int id);
 
     @Select("SELECT * FROM CREDENTIALS WHERE user_id = #{userId}")
-    List<Note> getCredentialsByUserId(int userId);
+    List<Credential> getCredentialsByUserId(int userId);
 }

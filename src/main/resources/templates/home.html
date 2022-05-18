@@ -176,7 +176,10 @@
                                                 class="btn btn-success">
                                             Edit
                                         </button>
-                                        <a class="btn btn-danger">Delete</a>
+                                        <form class="btn btn-danger" th:action="@{'/credential/' + ${credential.id}}" th:method="delete">
+                                            <button style="background-color: transparent; border-color: transparent; box-shadow: none;">Delete</button>
+                                        </form>
+<!--                                        <a class="btn btn-danger">Delete</a>-->
                                     </td>
 
                                     <th th:text="${credential.url}" scope="row"></th>

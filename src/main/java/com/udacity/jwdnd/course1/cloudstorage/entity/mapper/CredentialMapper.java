@@ -19,6 +19,9 @@ public interface CredentialMapper {
     @Delete("DELETE FROM CREDENTIALS WHERE id = #{id}")
     void deleteCredentialById(int id);
 
+    @Select("SELECT key FROM CREDENTIALS WHERE id = #{id}")
+    String getCredentialKey(int id);
+
     @Select("SELECT * FROM CREDENTIALS WHERE user_id = #{userId}")
     List<Credential> getCredentialsByUserId(int userId);
 }

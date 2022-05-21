@@ -1,7 +1,7 @@
 package com.udacity.jwdnd.course1.cloudstorage.service;
 
 import com.udacity.jwdnd.course1.cloudstorage.core.exceptions.BusinessException;
-import com.udacity.jwdnd.course1.cloudstorage.core.exceptions.FileBusinessError;
+import com.udacity.jwdnd.course1.cloudstorage.core.exceptions.errors.FileBusinessError;
 import com.udacity.jwdnd.course1.cloudstorage.entity.File;
 import com.udacity.jwdnd.course1.cloudstorage.entity.mapper.FileMapper;
 import lombok.RequiredArgsConstructor;

@@ -1,15 +1,16 @@
-package com.udacity.jwdnd.course1.cloudstorage.core.exceptions;
+package com.udacity.jwdnd.course1.cloudstorage.core.exceptions.errors;
 
-public enum FileBusinessError {
-    FILE_NAME_ALREADY_USED("F-1"),
-    MAXIMUM_UPLOAD_SIZE_EXCEEDED("F-2");
+import com.udacity.jwdnd.course1.cloudstorage.core.exceptions.ServiceError;
+
+public enum AuthError {
+    USERNAME_ALREADY_USED("U-1"),
+    INVALID_CREDENTIALS("U-2");
 
     private final String errorId;
 
-    FileBusinessError(String errorId) {
+    AuthError(String errorId) {
         this.errorId = errorId;
     }
-
     public ServiceError toServiceError(Object... params){
         return new ServiceError(errorId, getClass().getSimpleName() + "." + name(), params);
     }

@@ -1,5 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage.core.exceptions;
 
+import com.udacity.jwdnd.course1.cloudstorage.core.exceptions.errors.FileBusinessError;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.http.HttpStatus;

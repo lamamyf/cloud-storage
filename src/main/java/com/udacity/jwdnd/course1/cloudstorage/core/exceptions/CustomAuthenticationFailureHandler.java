@@ -18,7 +18,8 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
     private final ResourceBundleMessageSource messageSource;
 
     @Override
-    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException {
+        System.out.println("KK");
         String message = exception instanceof AuthException e ?
                          e.getServiceError().withTranslatingErrorMessage(messageSource).getErrorMessage() :
                          "error authenticating";

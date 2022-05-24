@@ -17,7 +17,7 @@
 
                 <div th:if="${param.error}" th:text="${param.error}" class="alert alert-danger">hh</div>
 
-                <div th:if="${loggedOut}" class="alert alert-dark">
+                <div th:if="${param.logout}" class="alert alert-dark">
                     You have been logged out
                 </div>
 

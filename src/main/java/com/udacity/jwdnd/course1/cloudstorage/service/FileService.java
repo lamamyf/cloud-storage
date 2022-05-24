@@ -17,9 +17,7 @@ public class FileService {
 
     private final FileMapper fileMapper;
 
-    public void uploadFile(MultipartFile file) {
-        int userId = 1;
-
+    public void uploadFile(MultipartFile file, int userId) {
         boolean fileNameAlreadyUsed = fileMapper.existsByNameAndUserId(file.getOriginalFilename(), userId);
 
         if(fileNameAlreadyUsed){

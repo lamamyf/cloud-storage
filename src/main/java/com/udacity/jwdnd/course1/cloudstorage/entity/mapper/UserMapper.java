@@ -6,10 +6,12 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.Optional;
+
 @Mapper
 public interface UserMapper {
 
-    @Insert("INSERT into USERS (username, salt, password, firstname, lastname) VALUES (#{username}, #{salt}, #{password}, #{firstName}, #{lastName})")
+    @Insert("INSERT into USERS (username, salt, password, first_name, last_name) VALUES (#{username}, #{salt}, #{password}, #{firstName}, #{lastName})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     public int addUser(User user);
 
@@ -17,5 +19,5 @@ public interface UserMapper {
     boolean existsByUsername(String username);
 
     @Select("SELECT * FROM USERS WHERE username = #{username}")
-    public User getUser(String username);
+    public Optional<User> getUser(String username);
 }

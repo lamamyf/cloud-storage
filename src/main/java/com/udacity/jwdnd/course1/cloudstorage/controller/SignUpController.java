@@ -19,7 +19,7 @@ public class SignUpController {
     @PostMapping
     public String register(SignUpForm signUpForm, RedirectAttributes redirectAttributes){
         userService.register(signUpForm.username(), signUpForm.password(), signUpForm.firstName(), signUpForm.lastName());
-        redirectAttributes.addFlashAttribute("success", true);
+        redirectAttributes.addFlashAttribute("success", "You successfully signed up!");
         return "redirect:/login";
     }
 

@@ -13,7 +13,7 @@
         <div class="container">
             <div id="logoutDiv">
                 <form th:action="@{/logout}" method="POST">
-                    <button type="submit" class="btn btn-secondary float-right">Logout</button>
+                    <button type="submit" class="btn btn-secondary float-right" id="logout-button">Logout</button>
                 </form>
             </div>
 
@@ -68,7 +68,7 @@
                     </div>
 
                     <div class="tab-pane fade" id="nav-notes" role="tabpanel" aria-labelledby="nav-notes-tab">
-                        <button style="margin: 0.25em;" type="button" class="btn btn-info float-right" onclick="showNoteModal()">
+                        <button id="add-note-button" style="margin: 0.25em;" type="button" class="btn btn-info float-right" onclick="showNoteModal()">
                             + Add a New Note
                         </button>
 
@@ -93,10 +93,9 @@
                                             <form class="btn btn-danger" th:action="@{'/note/' + ${note.id}}" th:method="delete">
                                                 <button style="background-color: transparent; border-color: transparent; box-shadow: none;">Delete</button>
                                             </form>
-<!--                                            <a class="btn btn-danger">Delete</a>-->
                                         </td>
-                                        <th scope="row" th:text="${note.title}"></th>
-                                        <td th:text="${note.description}"></td>
+                                        <th scope="row" th:text="${note.title}" class="title"></th>
+                                        <td th:text="${note.description}" class="description "></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -139,7 +138,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="$('#noteSubmit').click();">Save changes</button>
+                                        <button id="note-submit"  type="button" class="btn btn-primary" onclick="$('#noteSubmit').click();">Save changes</button>
                                     </div>
                                 </div>
                             </div>

@@ -1,5 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage.page;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,11 +28,18 @@ public class HomePage {
     @FindBy(id = "note-submit")
     WebElement submitNoteButton;
 
+    @FindBy(className = "notes")
+    List<WebElement> notes;
+
     @FindBy(className = "title")
     List<WebElement> noteTitles;
 
     @FindBy(className = "description")
     List<WebElement> noteDescriptions;
+
+    By editNoteLocator = By.id("edit-note-button");
+
+    By editDeleteLocator = By.id("delete-note-button");
 
     @FindBy(id = "logout-button")
     WebElement logOutButton;
@@ -47,10 +55,30 @@ public class HomePage {
         notesTab.click();
 
         wait.until(ExpectedConditions.elementToBeClickable(addNoteButton)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(noteTitle)).sendKeys(title);
+        wait.until(ExpectedConditions.visibilityOf(noteTitle)).sendKeys(title);
 
         noteDescription.sendKeys(description);
         submitNoteButton.click();
+    }
+
+    public void editNote(int noteIndex, String title, String description) {
+        notesTab.click();
+
+        wait.until(ExpectedConditions.visibilityOf(notes.get(noteIndex))).findElement(editNoteLocator).click();
+
+        wait.until(ExpectedConditions.visibilityOf(noteTitle)).clear();
+        noteTitle.sendKeys(title);
+
+        noteDescription.clear();
+        noteDescription.sendKeys(description);
+
+        submitNoteButton.click();
+    }
+
+    public void deleteNote(int noteIndex) {
+        notesTab.click();
+
+        wait.until(ExpectedConditions.visibilityOf(notes.get(noteIndex))).findElement(editDeleteLocator).click();
     }
 
     public List<String> getNoteTitles() {

@@ -50,8 +50,7 @@ public class UserService implements AuthenticationProvider {
                                .orElseThrow(() -> new AuthException(AuthError.INVALID_CREDENTIALS.toServiceError()));
 
         String hashedPassword = hashService.getHashedValue(password, user.getSalt());
-        System.out.println(user.getSalt());
-        System.out.println(hashedPassword);
+
         if(!hashedPassword.equals(user.getPassword()))
             throw new AuthException(AuthError.INVALID_CREDENTIALS.toServiceError());
 

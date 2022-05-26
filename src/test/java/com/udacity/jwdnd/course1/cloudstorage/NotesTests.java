@@ -24,7 +24,7 @@ public class NotesTests {
 
     @DisplayName("Given (lama) as a logged in user") @Nested class AddNoteTests {
         @DisplayName("When she tries to add a note") @Nested class AddNoteTest extends BaseTest {
-            HomePage homePage;
+            private HomePage homePage;
 
             @BeforeEach void when(){
                 driver.get(LOGIN_PAGE_URL.formatted(port));
@@ -43,6 +43,62 @@ public class NotesTests {
 
                 assertTrue(homePage.getNoteTitles().contains("title"));
                 assertTrue(homePage.getNoteDescriptions().contains("description"));
+            }
+        }
+    }
+
+    @DisplayName("Given (lama) as a logged in user ") @Nested class EditNoteTests {
+        @DisplayName("When she tries to edit an existent note") @Nested class EditNoteTest extends BaseTest {
+            private HomePage homePage;
+            private int noteToBeEditedIndex = 0;
+
+            @BeforeEach void when(){
+                driver.get(LOGIN_PAGE_URL.formatted(port));
+                LogInPage loginPage = new LogInPage(driver);
+                loginPage.logIn("lama", "112233");
+
+                homePage = new HomePage(driver);
+                homePage.editNote(0, "title edited", "description edited");
+            }
+            @DisplayName("Then the note got edited successfully")
+            @Test void then() {
+                ResultPage resultPage = new ResultPage(driver);
+
+                assertEquals("Note updated successfully.", resultPage.getSuccessMessage());
+
+                resultPage.goToHome();
+
+                assertEquals("title edited", homePage.getNoteTitles().get(noteToBeEditedIndex));
+                assertEquals("description edited", homePage.getNoteDescriptions().get(noteToBeEditedIndex));
+            }
+        }
+    }
+
+    @DisplayName("Given (lama) as a logged in user ") @Nested class DeleteNoteTests {
+        @DisplayName("When she tries to delete an existent note") @Nested class DeleteNoteTest extends BaseTest {
+            private HomePage homePage;
+            private int notesLength;
+
+            @BeforeEach void when(){
+                driver.get(LOGIN_PAGE_URL.formatted(port));
+                LogInPage loginPage = new LogInPage(driver);
+                loginPage.logIn("lama", "112233");
+
+                homePage = new HomePage(driver);
+
+                notesLength = homePage.getNoteTitles().size();
+
+                homePage.deleteNote(1);
+            }
+            @DisplayName("Then the note got edited successfully")
+            @Test void then() {
+                ResultPage resultPage = new ResultPage(driver);
+
+                assertEquals("Note deleted successfully.", resultPage.getSuccessMessage());
+
+                resultPage.goToHome();
+
+                assertEquals(notesLength - 1, homePage.getNoteTitles().size());
             }
         }
     }

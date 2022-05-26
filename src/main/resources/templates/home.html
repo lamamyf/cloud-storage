@@ -82,16 +82,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr th:each="note:${notes}">
+                                    <tr th:each="note:${notes}" class="notes">
                                         <td>
                                             <button type="button"
+                                                    id="edit-note-button"
                                                     th:onclick="javascript:showNoteModal(
                                                     [[${note.id}]],
                                                     [[${note.title}]],
                                                     [[${note.description}]])"
                                                     class="btn btn-success">Edit</button>
                                             <form class="btn btn-danger" th:action="@{'/note/' + ${note.id}}" th:method="delete">
-                                                <button style="background-color: transparent; border-color: transparent; box-shadow: none;">Delete</button>
+                                                <button style="background-color: transparent; border-color: transparent; box-shadow: none;" id="delete-note-button">Delete</button>
                                             </form>
                                         </td>
                                         <th scope="row" th:text="${note.title}" class="title"></th>

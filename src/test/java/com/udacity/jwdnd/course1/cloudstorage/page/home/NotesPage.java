@@ -1,4 +1,4 @@
-package com.udacity.jwdnd.course1.cloudstorage.page;
+package com.udacity.jwdnd.course1.cloudstorage.page.home;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -6,15 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class HomePage {
-
-    @FindBy(id = "nav-notes-tab")
-    WebElement notesTab;
+public class NotesPage extends HomePage{
 
     @FindBy(id = "add-note-button")
     WebElement addNoteButton;
@@ -41,13 +37,8 @@ public class HomePage {
 
     By editDeleteLocator = By.id("delete-note-button");
 
-    @FindBy(id = "logout-button")
-    WebElement logOutButton;
-
-    WebDriverWait wait;
-
-    public HomePage(WebDriver driver) {
-        wait = new WebDriverWait(driver, 10);
+    public NotesPage(WebDriver driver) {
+        super(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -93,9 +84,5 @@ public class HomePage {
         return wait.until(ExpectedConditions.visibilityOfAllElements(noteDescriptions))
                    .stream()
                    .map(e -> e.getText()).collect(Collectors.toList());
-    }
-
-    public void loggOut() {
-        logOutButton.click();
     }
 }

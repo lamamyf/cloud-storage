@@ -1,6 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage;
 
-import com.udacity.jwdnd.course1.cloudstorage.page.HomePage;
+import com.udacity.jwdnd.course1.cloudstorage.page.home.HomePage;
 import com.udacity.jwdnd.course1.cloudstorage.page.LogInPage;
 import com.udacity.jwdnd.course1.cloudstorage.page.SignUpPage;
 

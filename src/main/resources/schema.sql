@@ -42,3 +42,7 @@ INSERT INTO USERS (username, salt, password, first_name, last_name) VALUES ('lam
 INSERT INTO NOTES (title, description, user_id) VALUES
                   ('note title', 'note description', 1),
                   ('some note', 'some description', 1);
+
+INSERT INTO CREDENTIALS (url, username, key, password, user_id) VALUES
+                        ('url', 'lamamyf', 'VSs7L+7jw0qXHM9naLS8uA==', 'UQktjU9N+mIBHiJUBlSRYA==', 1),
+                        ('url', 'user', 'VSs7L+7jw0qXHM9naLS8uA==', 'UQktjU9N+mIBHiJUBlSRYA==',  1);

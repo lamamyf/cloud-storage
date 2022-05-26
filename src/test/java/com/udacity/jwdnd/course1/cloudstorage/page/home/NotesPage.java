@@ -35,7 +35,7 @@ public class NotesPage extends HomePage{
 
     By editNoteLocator = By.id("edit-note-button");
 
-    By editDeleteLocator = By.id("delete-note-button");
+    By deleteNoteLocator = By.id("delete-note-button");
 
     public NotesPage(WebDriver driver) {
         super(driver);
@@ -49,6 +49,7 @@ public class NotesPage extends HomePage{
         wait.until(ExpectedConditions.visibilityOf(noteTitle)).sendKeys(title);
 
         noteDescription.sendKeys(description);
+
         submitNoteButton.click();
     }
 
@@ -68,8 +69,7 @@ public class NotesPage extends HomePage{
 
     public void deleteNote(int noteIndex) {
         notesTab.click();
-
-        wait.until(ExpectedConditions.visibilityOf(notes.get(noteIndex))).findElement(editDeleteLocator).click();
+        wait.until(ExpectedConditions.visibilityOf(notes.get(noteIndex))).findElement(deleteNoteLocator).click();
     }
 
     public List<String> getNoteTitles() {

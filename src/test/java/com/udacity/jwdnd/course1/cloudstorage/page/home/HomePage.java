@@ -11,6 +11,9 @@ public class HomePage {
     @FindBy(id = "nav-notes-tab")
     WebElement notesTab;
 
+    @FindBy(id = "nav-credentials-tab")
+    WebElement credentialsTab;
+
     @FindBy(id = "logout-button")
     WebElement logOutButton;
 

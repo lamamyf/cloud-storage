@@ -57,7 +57,7 @@ public class NotesTests {
                 loginPage.logIn("lama", "112233");
 
                 notesPage = new NotesPage(driver);
-                notesPage.editNote(0, "title edited", "description edited");
+                notesPage.editNote(noteToBeEditedIndex, "title edited", "description edited");
             }
             @DisplayName("Then the note got edited successfully")
             @Test void then() {
@@ -89,7 +89,7 @@ public class NotesTests {
 
                 notesPage.deleteNote(1);
             }
-            @DisplayName("Then the note got edited successfully")
+            @DisplayName("Then the note got deleted successfully")
             @Test void then() {
                 ResultPage resultPage = new ResultPage(driver);
 

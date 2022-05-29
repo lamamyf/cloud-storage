@@ -1,4 +1,4 @@
-# Super*Duper*Drive Cloud Storage
+# Super*Duper*Drive - Cloud Storage
 
 **Features :**
 1. **Simple File Storage:** Upload/download/remove files
